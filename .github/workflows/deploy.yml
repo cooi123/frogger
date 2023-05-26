@@ -28,6 +28,9 @@ jobs:
         npm install
         npx webpack
         
+    - name: Testing
+    - run: npm test
+    
     - name: Upload artifacts
       uses: actions/upload-pages-artifact@v1
       with:
