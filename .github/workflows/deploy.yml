@@ -21,15 +21,12 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-
-    - name: Build
-      run: |
-        cd game
-        npm install
-        npx webpack
-        
-    - name: Testing
+        cacge: 'npm'
+    - run: cd game
+    - run: npm ci
     - run: npm test
+    - run: npm run build
+        
     
     - name: Upload artifacts
       uses: actions/upload-pages-artifact@v1
