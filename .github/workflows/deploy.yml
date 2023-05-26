@@ -7,27 +7,29 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: checkout code
-      - uses: actions/checkout@v3
-    
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Setup Node.js
-      - uses: actions/setup-node@v3
-    
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
       - name: Install dependencies
         working-directory: ./game
         run: npm install
-      
-      - name: run tests
+
+      - name: Run tests
         working-directory: ./game
         run: npm test
-    
+
       - name: Build
         working-directory: ./game
-        run: npm run build   
+        run: npm run build
       
       - name: Upload artifacts
         uses: actions/upload-pages-artifact@v1
@@ -37,7 +39,7 @@ jobs:
 # Deploy job
   deploy:
     # Add a dependency to the build job
-    needs: build
+    needs: build-and-test
 
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
