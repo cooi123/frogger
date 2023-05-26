@@ -11,28 +11,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: checkout code
-    - uses: actions/checkout@v3
+      - name: checkout code
+      - uses: actions/checkout@v3
     
-    - name: Setup Node.js
-    - uses: actions/setup-node@v3
+      - name: Setup Node.js
+      - uses: actions/setup-node@v3
     
-    - name: Install dependencies
-      working-directory: ./game
-      run: npm install
+      - name: Install dependencies
+        working-directory: ./game
+        run: npm install
       
-    - name: run tests
-      working-directory: ./game
-      run: npm test
+      - name: run tests
+        working-directory: ./game
+        run: npm test
     
-    - name: Build
-      working-directory: ./game
-      run: npm run build   
+      - name: Build
+        working-directory: ./game
+        run: npm run build   
       
-    - name: Upload artifacts
-      uses: actions/upload-pages-artifact@v1
-      with:
-        path: game/dist
+      - name: Upload artifacts
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: game/dist
     
 # Deploy job
   deploy:
