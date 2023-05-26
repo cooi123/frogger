@@ -10,24 +10,25 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x, 18.x]
-
     steps:
+    - name: checkout code
     - uses: actions/checkout@v3
-    - run: cd game
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
     
-    - run: npm ci
-    - run: npm test
-    - run: npm run build
-        
+    - name: Setup Node.js
+    - uses: actions/setup-node@v3
     
+    - name: Install dependencies
+      working-directory: ./game
+      run: npm install
+      
+    - name: run tests
+      working-directory: ./game
+      run: npm test
+    
+    - name: Build
+      working-directory: ./game
+      run: npm run build   
+      
     - name: Upload artifacts
       uses: actions/upload-pages-artifact@v1
       with:
