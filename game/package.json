@@ -2,7 +2,6 @@
   "name": "frogger",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "main": "./src/main.ts",
   "scripts": {
     "watch": "webpack --watch",
