@@ -27,6 +27,11 @@ jobs:
         cd game
         npm install
         npx webpack
+        
+    - name: Upload artifacts
+      uses: actions/upload-pages-artifact@v1
+      with:
+        path: dist
     
 # Deploy job
   deploy:
